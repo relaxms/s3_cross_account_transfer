@@ -1,0 +1,54 @@
+Source bucket policy
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DelegateS3Access",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::396226147817:user/Dest-user"      #source account user ARN
+            },
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::aws-source-bucket01/*", # source s3 bucket name
+                "arn:aws:s3:::aws-source-bucket01"
+            ]
+        }
+    ]
+}
+
+
+
+
+Destination bucket policy
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DasssS3Access",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::904266789709:user/User-dest"     #destination account user ARN
+            },
+            "Action": [
+                "s3:ListBucket",
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::aws-dest-bucket01/*",     #Destination s3 bucket name
+                "arn:aws:s3:::aws-dest-bucket01"
+            ]
+        }
+    ]
+}
+
+
+
+
+
+
